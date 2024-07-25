@@ -1,8 +1,7 @@
-@extends('layouts.app')
+<x-layout>
 
-@section('title', 'Listado de notas')
+    <x-slot:title>Listado de notas</x-slot:title>
 
-@section('content')
         <main class="content">
             <div class="cards">
 
@@ -181,4 +180,4 @@
                 </div>
             </div>
         </main>
-@endsection
+</x-layout>
