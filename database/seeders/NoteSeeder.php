@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class NoteSeeder extends Seeder
@@ -24,12 +25,14 @@ class NoteSeeder extends Seeder
                     @foreach
 
                     CONTENT,
+            'created_at' => Carbon::now(),
         ]);
 
         DB::table('notes')->insert([
             'title' => '¿Para qué sirve Composer?',
             'content' => 'Con Composer podemos instalar y actualizar frameworks como Laravel o Symfony,
                             así como componentes para generar PDF, procesar pagos con tarjetas, manipular imágenes y mucho más.',
+            'created_at' => Carbon::now(),
         ]);
 
         DB::table('notes')->insert([
@@ -37,12 +40,13 @@ class NoteSeeder extends Seeder
             'content' => <<<'CONTENT'
                     Hay 2 formas de instalar Laravel: la primera es a través con Composer, la cual te permite instalar una versión específica de Laravel:
 
-                    <pre>composer create-project laravel/laravel curso-laravel-styde "6.*"</pre>
+                    `composer create-project laravel/laravel curso-laravel-11 "11.*"`
 
                     La segunda es con el instalador de Laravel, la cual instalará la versión actual del framework:
 
-                    <pre>laravel new curso-laravel-styde</pre>
+                    `laravel new curso-laravel-10`
                     CONTENT,
+            'created_at' => Carbon::now(),
         ]);
 
         DB::table('notes')->insert([
@@ -50,7 +54,7 @@ class NoteSeeder extends Seeder
             'content' => <<<'CONTENT'
                     Recuerda que si retornas un arreglo en una ruta, Laravel lo va a convertir en JSON automáticamente:
 
-                    <pre>
+                    '''
                         <?php
 
                         Route::get('/', function () {
@@ -61,30 +65,35 @@ class NoteSeeder extends Seeder
                                 ]
                             ];
                         });
-                    </pre>
+                    '''
 
                     Producirá el siguiente resultado:
 
-                    <code>{"Cursos":["Primeros pasos con Laravel","Crea un panel de control con Laravel"]}</code>
+                    '''
+                    "Cursos":["Primeros pasos con Laravel","Crea un panel de control con Laravel"]
+                    '''
                     CONTENT,
+            'created_at' => Carbon::now(),
         ]);
 
         DB::table('notes')->insert([
             'title' => 'Front Controller',
             'content' => 'Front Controller es un patrón de arquitectura donde un controlador maneja todas las solicitudes o peticiones a un sitio web.',
+            'created_at' => Carbon::now(),
         ]);
 
         DB::table('notes')->insert([
             'title' => 'Cambia el formato de parámetros dinámicos',
             'content' => <<<'CONTENT'
-                    Puedes colocar el siguiente código en el método <code>boot</code>
-                    de <code>app/Providers/RouteServiceProvider.php</code>
-                    para restringir cualquier parámetro de las rutas a un formato numérico:
+                    Puedes colocar el siguiente código en el método 'boot'
+                    de 'app/Providers/RouteServiceProvider.php' para restringir cualquier parámetro de las rutas a un formato numérico:
 
-                    <pre>Route::pattern('nombre-del-parametro', '\d+');</pre>
-
+                    '''
+                    Route::pattern('nombre-del-parametro', '\d+');
+                    '''
                     Puedes por supuesto usar otras expresiones regulares para restringir a otros formatos.
                     CONTENT,
+            'created_at' => Carbon::now(),
         ]);
     }
 }
