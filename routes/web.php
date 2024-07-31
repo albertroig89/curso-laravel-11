@@ -16,26 +16,17 @@ Route::get('/notas', function () {
         '<script>alert("Código malicioso")</script>',
     ];
     return view('notes.index')->with('notes', $notes);
-});
+})->name('notes.index');
 
 Route::get('/notas/crear', function () {
     return view('notes.create'); //-> resources/views/notes/create.blade.php
-});
+})->name('notes.create');
 
 Route::get('/notas/{id}', function ($id) {
     return 'Detalle de la nota: '.$id;
-})->whereNumber('id');
+})->whereNumber('id')->name('notes.view');
 
 Route::get('/notas/{id}/editar', function ($id) {
     return 'Editar nota: '.$id;
-})->whereNumber('id');
+})->whereNumber('id')->name('notes.edit');
 
-Route::get('cursos', function () {
-    return [
-        'Cursos' => [
-            'Curso de Laravel 11',
-            'Curso de programación orientada a objetos',
-            'Curso de Git',
-        ]
-    ];
-});
