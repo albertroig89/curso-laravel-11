@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Note;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,21 @@ Route::get('/notas', function () {
     return view('notes.index')->with('notes', $notes);
 })->name('notes.index');
 
+
 Route::get('/notas/crear', function () {
     return view('notes.create'); //-> resources/views/notes/create.blade.php
 })->name('notes.create');
+
+
+Route::post('/notas', function (Request $request){
+    Note::create([
+        'title' =>  $request->input('title'),
+        'content' =>  $request->input('content'),
+    ]);
+
+    //return back(); Torna a la mateixa pagina d'on vens
+    return redirect()->route('notes.index');
+})->name('notes.store');
 
 
 Route::get('/notas/{id}', function ($id) {
