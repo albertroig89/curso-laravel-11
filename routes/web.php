@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Note;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -11,9 +12,9 @@ Route::get('/home', function () {
 
 Route::get('/notas', function () {
 
-    $notes = DB::table('notes')
+    $notes = Note::query()
 
-        ->orderBy('created_at', 'desc')
+        ->orderByDesc('created_at')
         //Buscar com fer que les notes s'ordeniguen per data de creacio
 
         ->get();
@@ -38,8 +39,7 @@ Route::get('/notas/{id}', function ($id) {
 
 Route::get('/notas/{id}/editar', function ($id) {
 
-    $note = DB::table('notes')->find($id);
-    abort_if($note === null, 404); //Si el contingut de la variable es null, retorna un error 404
+    $note = Note::findOrFail($id); //Si el contingut de la variable es null, retorna un error 404
 
 //    dd($note); S'utilitza per a depurar, ja que pots veure el contingut de la variable en este moment concret
 
