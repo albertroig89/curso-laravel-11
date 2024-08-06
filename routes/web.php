@@ -4,6 +4,7 @@ use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 
 
 Route::get('/home', function () {
@@ -30,6 +31,13 @@ Route::get('/notas/crear', function () {
 
 
 Route::post('/notas', function (Request $request){
+    $request->validate([
+//        'title' => 'required|min:5', Es lo mateix pero en sintaxi diferent
+//        'title' => ['required', 'min:3', 'unique:notes,title'], Es lo mateix pero en sintaxi diferent el que utilitzem es orientat a objectes
+        'title' => ['required', 'min:3', Rule::unique('notes')],
+        'content' => 'required'
+    ]);//Mos assegurem que si els camps estan buits al crear la nota, no dona error l'aplicacio
+
     Note::create([
         'title' =>  $request->input('title'),
         'content' =>  $request->input('content'),

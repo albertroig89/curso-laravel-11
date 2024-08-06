@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="main-nav-item active">
-                    <a href="{{ route('notes.create') }}{{ url('/notas/crear') }}" class="main-nav-link">
+                    <a href="{{ route('notes.create') }}" class="main-nav-link">
                         <i class="icon icon-pen"></i>
                         <span>Nueva nota</span>
                     </a>
