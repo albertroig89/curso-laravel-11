@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
+use App\Models\Note;
 
 class NoteSeeder extends Seeder
 {
@@ -14,7 +13,19 @@ class NoteSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('notes')->insert([
+
+        $note = new Note;
+        $note->title = 'Titulo de la nota';
+        $note->content = 'Contenido de la nota';
+        $note->save();
+
+        $note = new Note([
+            'title' => 'Titulo de la nota2',
+            'content' => 'Contenido de la nota2',
+        ]);
+        $note->save();
+
+        Note::create([
             'title' => 'Aprendiendo Blade',
             'content' => <<<'CONTENT'
                     Para imprimir una variable con Blade utilizamos esta sintaxis:
@@ -28,14 +39,14 @@ class NoteSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
 
-        DB::table('notes')->insert([
+        Note::create([
             'title' => '¿Para qué sirve Composer?',
             'content' => 'Con Composer podemos instalar y actualizar frameworks como Laravel o Symfony,
                             así como componentes para generar PDF, procesar pagos con tarjetas, manipular imágenes y mucho más.',
             'created_at' => Carbon::now(),
         ]);
 
-        DB::table('notes')->insert([
+        Note::create([
             'title' => 'Instalación de Laravel',
             'content' => <<<'CONTENT'
                     Hay 2 formas de instalar Laravel: la primera es a través con Composer, la cual te permite instalar una versión específica de Laravel:
@@ -49,7 +60,7 @@ class NoteSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
 
-        DB::table('notes')->insert([
+        Note::create([
             'title' => 'Rutas y JSON',
             'content' => <<<'CONTENT'
                     Recuerda que si retornas un arreglo en una ruta, Laravel lo va a convertir en JSON automáticamente:
@@ -76,13 +87,13 @@ class NoteSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
 
-        DB::table('notes')->insert([
+        Note::create([
             'title' => 'Front Controller',
             'content' => 'Front Controller es un patrón de arquitectura donde un controlador maneja todas las solicitudes o peticiones a un sitio web.',
             'created_at' => Carbon::now(),
         ]);
 
-        DB::table('notes')->insert([
+        Note::create([
             'title' => 'Cambia el formato de parámetros dinámicos',
             'content' => <<<'CONTENT'
                     Puedes colocar el siguiente código en el método 'boot'
